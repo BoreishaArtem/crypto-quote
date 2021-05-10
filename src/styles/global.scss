@@ -1,0 +1,15 @@
+@import "variables";
+@import "reset";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+/*
+  Importing fonts from Google api
+*/
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+body {
+  background-color: $black;
+}
