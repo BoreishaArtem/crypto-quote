@@ -9,18 +9,18 @@
       </ul>
       <ul class="sidebar-body--currencies">
         <li v-for="(value, key) in firstValue" :key="key" @click="setChartValue(value)">
-          <span class="pair">{{ value.TSYM }} | {{ value.FSYM }}</span>
-          <div class="change">
-            <ArrowUp
-              v-if="value.P.toFixed(1) > secondValue[key].P.toFixed(1)
+            <span class="pair">{{ value.TSYM }} | {{ value.FSYM }}</span>
+            <div class="change">
+              <ArrowUp
+                v-if="value.P.toFixed(1) > secondValue[key].P.toFixed(1)
               && calculatePercentage(key, value) !== '0.00'"
-            />
-            <template v-else>
-            <ArrowDown v-if="calculatePercentage(key, value) !== '0.00'"/>
-            </template>
-            {{ calculatePercentage(key, value) }}%
-          </div>
-          <span class="price">{{ value.P }}</span>
+              />
+              <template v-else>
+                <ArrowDown v-if="calculatePercentage(key, value) !== '0.00'"/>
+              </template>
+              {{ calculatePercentage(key, value) }}%
+            </div>
+            <span class="price">{{ value.P }}</span>
         </li>
       </ul>
     </div>
@@ -68,7 +68,6 @@ export default {
     };
   },
   methods: {
-    // eslint-disable-next-line consistent-return
     calculatePercentage(key, value) {
       if (this.secondValue && this.secondValue[key] && value) {
         const firstValue = value.P;
@@ -87,6 +86,7 @@ export default {
         }
         return (100 - (100 * min) / max).toFixed(2);
       }
+      return null;
     },
     setChartValue(data) {
       this.$store.dispatch('defineChartPair', data);
@@ -158,6 +158,35 @@ export default {
         margin-left: 10px;
       }
     }
+  }
+}
+
+@media all and (max-width: 1580px) {
+  .sidebar-body--currencies li .pair {
+    width: 35%;
+  }
+  .sidebar-body--headings li:not(:last-child) {
+    width: 44%;
+  }
+}
+@media all and(max-width: 565px) {
+  .sidebar-body--headings li:not(:last-child) {
+    font-size: 12px;
+  }
+  .sidebar-header {
+    font-size: 18px;
+  }
+  .sidebar-body--currencies li {
+    .pair {
+      font-size: 14px;
+    }
+    .change {
+      font-size: 14px;
+    }
+    .price {
+      font-size: 14px;
+    }
+
   }
 }
 </style>

@@ -28,4 +28,22 @@ export default {
   align-items: flex-start;
   flex-wrap: wrap;
 }
+@media all and (max-width: 1300px) {
+  .sidebar {
+    width: 100%;
+    order: 3;
+    flex: 0 0 100%;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  .chart {
+    order: 2;
+    width: 100%;
+  }
+  .header {
+    width: 100%;
+    order: 1;
+  }
+}
+
 </style>
